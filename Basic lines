@@ -1,9 +1,67 @@
+CTRL + U -->corta la linea
+CTRL + Y -->pega la linea 
+CTRL + K -->corta la linea desde la posicion del cursor 
+CTROL + R X -->Busca en tu historial la ultima vez que escribiste X (CTRL+L Busca otra vez en la que lo hayas escrito, penultima)
+history -->devuelve las lineas de comando ejecutadas (historial)
+................................................................................
+| -->Pasar un comandoa directamente a otro 
+head X | wc  -->Muestrame las primeras lineas de X (Head), cuentame las lineas (wc)
+head X | tail -5  --> Muestrame las primeras 10 lineas (head), muestrame las ultimas 5 (de las primeras 10)
+wc > prueba.csv  -->Guarda la informacion extraida en un archivo csv (Se guarda en la ruta donde estés) 
 
+Ej:  Mete dentro del archivo prueba.csv el comando date (mete la fecha) 
+ echo `date`>> prueba.csv
+ ................................................................................
+ find -->Muestra todos los archivos que hay en un fichero (incluyendo todos los que hay dentros) (ls solo muestra los de la ubicacion donde estas)
+
+find . -name "text_file*" -->Buscame todos los archivos que tengan "text_file" 
+find . -iname "text_file*" --> Ignora mayus/min
+find . -iname "text_file*" -type d  -->Muestrame los directorios (una f mostraria solo los ficheros) 
+ find . -maxdepth 4 -iname "text_file*" -type d -->Indica el maximo nivel hasta el que debe buscar (limita los niveles de busqueda)
+  find . -maxdepth 4 -iname "text_file*" -perm 777 -->Busca los archivos que tengan todos los permisos ( ! -perm 777 busca los que NO)
+   find . -iname "text_file*" - size -10M -->Busca los ficheros que tengan menos de 10Megas
+    find . -mmin -60 -->Busca los ficheros que se hayan modificado en los ultimos 60 minutos 
+    
+find . -iname "text_file*" -type f -exec -->Busca los archivos text_file y sobre la salida ejecuta: 
+find . -iname "text_file*" -type f -exec echo "Found it" \; (Cuando encuentres un archivo con text_file escribe "Found it;" (tantas veces como archivos encuentre 
+find . -iname "text_file*" -type f -exec ls -s {} \; --> ?¿?
+
+................................................................................
+find . -iname "text_file*" -type f -exec sh -c "ls -s {} | wc" \;
+find = busca un archivo
+find . -iname = busca un archivo ignorando mayus/minus que tengan el nombre -->
+"text_file*" = Usa este nombre para la lista sin importarme en que posicion está (si al principio o al final) = * 
+-type f = Busca solo ficheros, no directorios 
+- exec sh -c =En la salida creada aplica lo siguiente-->  (sh =bash) 
+"ls -s{} = Crea una lista de los ficheros encontrados 
+| = Une el comando anterior con el siguiente -->
+wc = devuelve las dimensiones (aplicado junto a la lista, devolveria las dimensiones de cada elemento de la lista) 
+
+Busca todos los archivos que contengan text_file (ignorando mayus/minus) (buscando solo ficheros, no directorios), 
+sobre la salida: ejecuta (exec) una lista (ls -s) 
+, mostrandome las dimensiones de dicha lista (wc)
+
+................................................................................
+cat X -->Muestra el contenido de X 
+................................................................................
+wc muestra informacion del archivo
+-LINEAS-PALABRAS-BITES-
+wc -l X -->Muestrame el numero de lineas del archivo X 
+................................................................................
+head X -->Muestra las primeras lineas del archivo X 
+head -20 ./X --> Muestra las primeras 20 lineas del archivo X 
+head -n -455 ./X -->Muestra las primeras lineas y no me muestres las ultimas 455 lineas 
+................................................................................
+tail -->muestra las ultimas lineas del fichero  
+tail +5 ./X -->Desde abajo, muestrame las lineas saltandote las primeras 5 
+................................................................................
 cd = change directory 
 pwd = print working directory 
 / --> dar un path absoluto
 echo "$(date)" = echo `date`--> Ejecuta el comando date
 sudo --> ejecuta un comando como administrador 
+
+ echo $HISTSIZE -->Muestra el numero de lineas por defecto que muestra el historial 
 
 ................................................................................
 sudo apt-get update -->Actualizar terminal 

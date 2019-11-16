@@ -75,6 +75,11 @@ mv x1 x1'/x2 --> mueve el fichero x1 al x2 cambiandolo de nombre a x'
 rm -->borrar arhivos (no retorno)
 rm -r X -->Borra el directorio X 
 rm -rf X -->Borra el directorio X (no te pedirá confirmación) 
+.................................................................................
+alias -->muestra los alias que tienes (*atajos)
+
+type X -->muestra que tipo de elemento es X
+Ej: type ll --> ll is alias
 
 
 

@@ -1,0 +1,113 @@
+
+
+
+cd = change directory 
+pwd = print working directory 
+/ --> dar un path absoluto
+echo "$(date)" = echo `date`--> Ejecuta el comando date
+sudo --> ejecuta un comando como administrador 
+
+................................................................................
+sudo apt-get update -->Actualizar terminal 
+................................................................................
+GLOSARIO: cd, pwd, echo, whoami, mkdir, cat, ls, date
+.................................................................................
+whoami - Muestra el usuario actual 
+.................................................................................
+pwd - Muestra tu ubicacion actual 
+.................................................................................
+date - Devuelve la hora y fecha actual
+.................................................................................
+cd --> moverse entre carpetas
+Ej: cd /home -->Te desplazas a la carpeta home
+
+cd .. - Sube un nivel 
+
+cd - Regresas al directorio principal 
+cd - --> Volver al directorio anterior 
+.................................................................................
+ls - muestra el contenido del directorio 
+ls -1 -muestra el contenido con un contenido por linea 
+ls -s -muestra el tamaño del fichero 
+ls -lt -muestra cuando se modificó el archivo 
+ls -Ss1 -muestra ficheros por tamaño ordenados de mayor a menor mostrando uno por linea
+ls -1Ss1r -muestra ficheros ordenados de menor a mayor por linea
+ls -a  -muestra todos los ficheros ocultos 
+ls -la -muestra todos los directorios y sus respectivos permisos 
+ll -
+
+-rw-rw-rw- 1 aibloy aibloy
+Se muestran 3 grupos con sus respectivos permisos (---):
+r --> puedes leer
+w --> puedes escribir
+x --> puedes ejecutar 
+- --> No se tiene 
+El nº indica el nº de directorios que encuentras por encima del archivo 
+.................................................................................
+cat - ver el conteido de un fichero 
+.................................................................................
+chmod -->cambiar permisos (u(-/+)(w/r/x)  dar(+) quitar(-) permisos de (write/read/execute) 
+Ej: chmod u-w README.md  -->Quita el permiso de w (write) del archivo README.md
+
+chmod 777 X -->Entrega todos los permisos al archivo X
+.................................................................................
+mkdir - crear un directorio en la ubicación actual 
+mkdir x1 x2 x3 -crea 3 directorios distintos
+mkdir x1/x2 -crea el directorio x2 dentro del directorio x1 
+mkdir -p x1/x2/x3 -crea 3 directorios desde 0, unos dentros de otros. 
+.................................................................................
+c-->copiar un fichero 
+cp x1 x2 -->copiar el fichero x1 y ponerlo en el directorio x2
+cp x1 x2 x3 --> copia los archivos x1 y x2 en el directorio x3 
+
+cp -r x1 x2 --> copia el directorio x1 en el directorio x2 
+*Si x2 existe, copia el directorio entero 
+*Si x2 no existe, copia el contenido del directorio 
+
+cp -p x1 x2 --> copia el fichero x1 y lo pone en el directorio x2 conservando los permisos 
+*Cuando haces una cp los permisos de la copia no tienen porque ser iguales 
+.................................................................................
+mv -->mover archivos 
+mv x1 ../  -->Mueve el directorio a un nivel por encima 
+mv x1 x2 -->mueve el archivo x1 en x2 
+mv x1 x1'/x2 --> mueve el fichero x1 al x2 cambiandolo de nombre a x'
+.................................................................................
+rm -->borrar arhivos (no retorno)
+rm -r X -->Borra el directorio X 
+rm -rf X -->Borra el directorio X (no te pedirá confirmación) 
+
+
+
+.................................................................................
+touch --> crear un fichero 
+Ej: touch X.txt -->crea el archivo .txt de nombre X
+.................................................................................
+echo - Te devuelve el parámetro 
+
+echo "esto es" "una prueba" - Ejecuta las dos lineas juntas 
+-->esto es una prueba 
+
+echo $SHELL - Devuelveme el valor de la variable SHELL (Mostrar que SHELL estás usando) 
+(Por defecto suele ser bash) 
+.................................................................................
+cat - Muestra el contenido de un fichero 
+Ej: cat /home --> Is a directory 
+
+cat /etc/os-release - Muestra la version de ubuntu en la que estamos
+
+cat /proc/cpuinfo - Muestra la información del CPU 
+cat *.txt - Mostrar la informacion de los archivos que terminan en .txt
+.................................................................................
+Crea una variable de nombre X 
+MASTER=X
+.................................................................................
+; = Poner varios comandos en la misma linea 
+Ej: echo "Hola"; date --> Muestra "Hola" y después la fecha (Ejecuta el comando echo y luego el date)
+
+\; =  No ejecuta el siguiente comando 
+echo "hola" \; date --> Ejecuta el comando echo pero no el date. 
+.................................................................................
+
+git clone https://github.com/IgorAramb/DS_CL_files.git 
+
+

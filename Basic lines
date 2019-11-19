@@ -1,16 +1,113 @@
-CTRL + U -->corta la linea
-CTRL + Y -->pega la linea 
-CTRL + K -->corta la linea desde la posicion del cursor 
-CTROL + R X -->Busca en tu historial la ultima vez que escribiste X (CTRL+L Busca otra vez en la que lo hayas escrito, penultima)
-history -->devuelve las lineas de comando ejecutadas (historial)
+#..............................................................LINUX COMMAND LINES
+
+GLOSARIO:
+pwd -Ruta actual
+cd -Moverse entre directorios
+ls -Contenido de los directorios
+wc -Información del archivo
+cat -Contenido del archivo
+mkdir -Crear directorio
+touch -Crear archivo
+rm -Borrar archivo
+clear -Limpiar terminal
+history -Mostrar historial
+whoami -Mostrar usuario actual
+date -Mostrar fecha y hora actual 
+
 ................................................................................
-| -->Pasar un comandoa directamente a otro 
-head X | wc  -->Muestrame las primeras lineas de X (Head), cuentame las lineas (wc)
+
+pwd 
+-> Muestra la ruta actual en la que te encuentras
+
+................................................................................
+
+cd 
+-> Te desplaza al directorio principal 
+cd ..
+-> Te desplaza a un nivel superior 
+
+................................................................................
+
+ls
+-> Muestra una lista de los archivos donde te encuentres 
+
+ls x :                    Ej: ls-a
+-a Muestra todos los archivos incluyendo los ocultos 
+-1 Muestra el contenido en formato lista (uno por linea)
+-s Muestra el tamaño de los ficheros 
+-lt Muestra cuando se modificó un archivo 
+-Ss Ordena los ficheros de mayor a menor 
+-la Muestra todos los directorios y sus respectivos permisos 
+
+................................................................................
+
+wc X
+-> Muestra información del archivo X (-LINEAS-PALABRAS-BITES-)
+
+................................................................................
+
+cat X
+-> Muestra el contenido del archivo X 
+
+................................................................................
+
+mkdir X
+--> Crea un nuevo directorio en la ruta actual llamado X 
+
+mkdir x1 x2 x3 
+--> crea 3 directorios distintos
+
+mkdir x1/x2 
+--> crea el directorio x2 dentro del directorio x1 
+
+mkdir -p x1/x2/x3 
+-->crea 3 directorios desde 0, unos dentros de otros. 
+
+................................................................................
+
+touch X.txt
+--> Crea un archivo vacío llamado X de extensión txt en la ruta actual 
+
+................................................................................
+
+rm X.txt
+--> Borra el archivo X 
+ rm -r X/
+ --> Borra el directorio X
+
+................................................................................
+
+clear
+-->Limpia la terminal 
+
+................................................................................
+
+history 
+-->devuelve las lineas de comando ejecutadas (historial)
+
+................................................................................
+
+whoami
+-->Muestra el usuario actual
+
+................................................................................
+
+date
+-->Devuelve la fecha y hora actual 
+
+................................................................................
+
+head X -->Muestra las primeras lineas del archivo X 
+head -20 ./X --> Muestra las primeras 20 lineas del archivo X 
+head -n -455 ./X -->Muestra las primeras lineas y no me muestres las ultimas 455 lineas 
+
+head X | wc  -->Muestrame las primeras lineas de X (Head) y cuentame las lineas (wc)
 head X | tail -5  --> Muestrame las primeras 10 lineas (head), muestrame las ultimas 5 (de las primeras 10)
 wc > prueba.csv  -->Guarda la informacion extraida en un archivo csv (Se guarda en la ruta donde estés) 
 
 Ej:  Mete dentro del archivo prueba.csv el comando date (mete la fecha) 
  echo `date`>> prueba.csv
+ 
  ................................................................................
  find -->Muestra todos los archivos que hay en un fichero (incluyendo todos los que hay dentros) (ls solo muestra los de la ubicacion donde estas)
 
@@ -26,7 +123,7 @@ find . -iname "text_file*" -type f -exec -->Busca los archivos text_file y sobre
 find . -iname "text_file*" -type f -exec echo "Found it" \; (Cuando encuentres un archivo con text_file escribe "Found it;" (tantas veces como archivos encuentre 
 find . -iname "text_file*" -type f -exec ls -s {} \; --> ?¿?
 
-................................................................................
+
 find . -iname "text_file*" -type f -exec sh -c "ls -s {} | wc" \;
 find = busca un archivo
 find . -iname = busca un archivo ignorando mayus/minus que tengan el nombre -->
@@ -42,21 +139,12 @@ sobre la salida: ejecuta (exec) una lista (ls -s)
 , mostrandome las dimensiones de dicha lista (wc)
 
 ................................................................................
-cat X -->Muestra el contenido de X 
-................................................................................
-wc muestra informacion del archivo
--LINEAS-PALABRAS-BITES-
-wc -l X -->Muestrame el numero de lineas del archivo X 
-................................................................................
-head X -->Muestra las primeras lineas del archivo X 
-head -20 ./X --> Muestra las primeras 20 lineas del archivo X 
-head -n -455 ./X -->Muestra las primeras lineas y no me muestres las ultimas 455 lineas 
+
 ................................................................................
 tail -->muestra las ultimas lineas del fichero  
 tail +5 ./X -->Desde abajo, muestrame las lineas saltandote las primeras 5 
 ................................................................................
-cd = change directory 
-pwd = print working directory 
+
 / --> dar un path absoluto
 echo "$(date)" = echo `date`--> Ejecuta el comando date
 sudo --> ejecuta un comando como administrador 
@@ -66,31 +154,7 @@ sudo --> ejecuta un comando como administrador
 ................................................................................
 sudo apt-get update -->Actualizar terminal 
 ................................................................................
-GLOSARIO: cd, pwd, echo, whoami, mkdir, cat, ls, date
-.................................................................................
-whoami - Muestra el usuario actual 
-.................................................................................
-pwd - Muestra tu ubicacion actual 
-.................................................................................
-date - Devuelve la hora y fecha actual
-.................................................................................
-cd --> moverse entre carpetas
-Ej: cd /home -->Te desplazas a la carpeta home
 
-cd .. - Sube un nivel 
-
-cd - Regresas al directorio principal 
-cd - --> Volver al directorio anterior 
-.................................................................................
-ls - muestra el contenido del directorio 
-ls -1 -muestra el contenido con un contenido por linea 
-ls -s -muestra el tamaño del fichero 
-ls -lt -muestra cuando se modificó el archivo 
-ls -Ss1 -muestra ficheros por tamaño ordenados de mayor a menor mostrando uno por linea
-ls -1Ss1r -muestra ficheros ordenados de menor a mayor por linea
-ls -a  -muestra todos los ficheros ocultos 
-ls -la -muestra todos los directorios y sus respectivos permisos 
-ll -
 
 -rw-rw-rw- 1 aibloy aibloy
 Se muestran 3 grupos con sus respectivos permisos (---):
@@ -99,18 +163,14 @@ w --> puedes escribir
 x --> puedes ejecutar 
 - --> No se tiene 
 El nº indica el nº de directorios que encuentras por encima del archivo 
-.................................................................................
-cat - ver el conteido de un fichero 
+..................................................................
 .................................................................................
 chmod -->cambiar permisos (u(-/+)(w/r/x)  dar(+) quitar(-) permisos de (write/read/execute) 
 Ej: chmod u-w README.md  -->Quita el permiso de w (write) del archivo README.md
 
 chmod 777 X -->Entrega todos los permisos al archivo X
 .................................................................................
-mkdir - crear un directorio en la ubicación actual 
-mkdir x1 x2 x3 -crea 3 directorios distintos
-mkdir x1/x2 -crea el directorio x2 dentro del directorio x1 
-mkdir -p x1/x2/x3 -crea 3 directorios desde 0, unos dentros de otros. 
+
 .................................................................................
 c-->copiar un fichero 
 cp x1 x2 -->copiar el fichero x1 y ponerlo en el directorio x2
@@ -128,9 +188,7 @@ mv x1 ../  -->Mueve el directorio a un nivel por encima
 mv x1 x2 -->mueve el archivo x1 en x2 
 mv x1 x1'/x2 --> mueve el fichero x1 al x2 cambiandolo de nombre a x'
 .................................................................................
-rm -->borrar arhivos (no retorno)
-rm -r X -->Borra el directorio X 
-rm -rf X -->Borra el directorio X (no te pedirá confirmación) 
+
 .................................................................................
 alias -->muestra los alias que tienes (*atajos)
 
@@ -138,10 +196,6 @@ type X -->muestra que tipo de elemento es X
 Ej: type ll --> ll is alias
 
 
-
-.................................................................................
-touch --> crear un fichero 
-Ej: touch X.txt -->crea el archivo .txt de nombre X
 .................................................................................
 echo - Te devuelve el parámetro 
 
@@ -158,9 +212,7 @@ cat /etc/os-release - Muestra la version de ubuntu en la que estamos
 
 cat /proc/cpuinfo - Muestra la información del CPU 
 cat *.txt - Mostrar la informacion de los archivos que terminan en .txt
-.................................................................................
-Crea una variable de nombre X 
-MASTER=X
+
 .................................................................................
 ; = Poner varios comandos en la misma linea 
 Ej: echo "Hola"; date --> Muestra "Hola" y después la fecha (Ejecuta el comando echo y luego el date)
@@ -171,4 +223,9 @@ echo "hola" \; date --> Ejecuta el comando echo pero no el date.
 
 git clone https://github.com/IgorAramb/DS_CL_files.git 
 
+#ATAJOS DE TECLADO 
+CTRL + U -->corta la linea
+CTRL + Y -->pega la linea 
+CTRL + K -->corta la linea desde la posicion del cursor 
+CTROL + R X -->Busca en tu historial la ultima vez que escribiste X (CTRL+L Busca otra vez en la que lo hayas escrito, penultima)
 

@@ -111,7 +111,7 @@ Ej:  Mete dentro del archivo prueba.csv el comando date (mete la fecha)
  ................................................................................
  find -->Muestra todos los archivos que hay en un fichero (incluyendo todos los que hay dentros) (ls solo muestra los de la ubicacion donde estas)
 
-find . -name "text_file*" -->Buscame todos los archivos que tengan "text_file" 
+find . -name "*text_file*" -->Buscame todos los archivos que tengan "text_file" 
 find . -iname "text_file*" --> Ignora mayus/min
 find . -iname "text_file*" -type d  -->Muestrame los directorios (una f mostraria solo los ficheros) 
  find . -maxdepth 4 -iname "text_file*" -type d -->Indica el maximo nivel hasta el que debe buscar (limita los niveles de busqueda)
@@ -228,4 +228,152 @@ CTRL + U -->corta la linea
 CTRL + Y -->pega la linea 
 CTRL + K -->corta la linea desde la posicion del cursor 
 CTROL + R X -->Busca en tu historial la ultima vez que escribiste X (CTRL+L Busca otra vez en la que lo hayas escrito, penultima)
+.................................................................................
 
+seq 10 
+->Devuelve una secuencia de numeros 
+
+seq 10 20 
+->Devuelve una secuencia que empieza en 10 y termina en 20
+
+seq 10 3 20 
+->Secuencia que empieza en 10 termina en 20 y va de 3 en 3 
+
+
+seq 1 2 10 > uniq_example.txt
+->Crea un fichero con el siguiente contenido 
+
+seq 1 10 >> uniq_example.txt
+->Añade nuevo contenido al fichero ya creado 
+
+uniq uniq_example.txt 
+->Devuelve lineas no duplicadas (consecutivas) 
+
+ sort -n uniq_example.txt
+ ->Ordena de menor a mayor (A - Z) 
+ 
+ sort -nr uniq_example.txt
+ ->Ordea de mayor a menor 
+ 
+sort -n uniq_example.txt | uniq
+-> Ordena de menor a mayor (sort -n) y luego aplica la funcion uniq, resultado = Deja solo los valores unicos 
+
+ sort -n uniq_example.txt | uniq -c
+ ->Devuelve (-c) una cuenta de los valores unicos y las veces que aparece. 
+
+
+ sort optd_aircraft.csv | head
+ ->Ordena el archivo (sus diez primeras lineas) por orden alfabetico 
+ 
+ sort -t "^" -k 6r  optd_aircraft.csv | head
+ -t "^" Delimitador del archivo 
+ -k (aplicado a la columna) 
+ 6 (Ordena desde la 6 columna) 
+ r (Ordenalo de forma inversa) 
+ 
+ sort -t "^" -k 6,6 optd_aircraft.csv | head
+ -> (6,6) Usa solo la columna 6 
+ 
+ 
+ sort -t "^" -k 7,7nr optd_aircraft.csv | head
+ ->En la columna 7, ordename de mayor a menor y muestrame solo los 10 primeros 
+ 
+ sort -t "^" -k 2,2 -u optd_aircraft.csv | wc
+ ->En la columna numero 2 devuelve los valores unicos (-u) y cuentalos (wc) 
+ 
+ 
+ cut -d "^" -f 1,3-5 optd_aircraft.csv | head
+ ->Cortamos las columnas 1,3,4 y 5 
+ 
+ 
+  paste <(cat numbers) <(cat numbers)
+  ->Ejecuta los dos comandos en paralelo (devuelve las dos salidas al mismo tiempo) 
+  
+  head -1 optd_aircraft.csv | tr "^" "\n"
+  ->En la primera linea del archivo optd_aircraft, cambiame el carácter "^" por "\n" (\n = espacio tabulador nueva linea) 
+ 
+  paste <(seq 1 10 ) <(head -1 optd_aircraft.csv | tr "^" "\n")
+  ->Devuelve ordenados en una lista del 1 al 10 los caracteres que antes estaban delimitados por ^
+  
+  echo "master data science" | tr a A
+  devuelve -> mAster dAtA science 
+  
+  echo "paaaco" | tr -s "a" 
+  devuelve -> paco 
+  (Elimina valores duplicados consecutivos)
+  
+  tr -d "a" (Elimina el carácter a) 
+  
+  tr -cd "a" (Elimina todo menos el carácter a) 
+  
+  
+  grep This Text_example.txt
+->Muestrame cuando encuentres "This" en el archivo Text_example.txt   
+
+grep -n This Text_example.txt
+(-n) Muestrame en que linea la encuentras 
+(-c) Muestra cuantas lineas tienen esa palabra 
+ 
+ grep -c -o this Text_example.txt
+ 
+  echo Sunday | sed s/day/night/g
+  Devuelve Sunnight 
+  (Busca linea por linea y cambia "day" por "night", s de sustitute, g de hazlo con todas las que encuentres si no lo hace solo 1 vez por linea)
+  
+  
+   sed s/this/WHAT/g Text_example.txt
+   cambia this por WHat en el archivo 
+   
+   sed s/this/WHAT/gI Text_example.txt
+   (I) Realiza el cambio sin importar si el this tiene mayus o minus 
+   
+   sed -i s/this/WHAT/gI Text_example.txt.copy
+   (-i) De inplace, realiza el cambio en el propio fichero 
+   
+   git reset --hard HEAD
+   (Deshace el ultimo commit que has hecho del repositorio)
+   
+    seq 5 | sed 2,4d
+    ->En la secuencia del 1 al 5 borrar las lineas del 2 al 4 
+    
+    seq 10 15 | sed '/14/d'                       sed '/this/d' Text_example.txt (Lo mismo pero con un archivo) 
+    ->En la secuencia del 10 al 15 borra la linea que contenga el 14 
+    
+     seq 10 15 | sed '/14/!d'  
+     ->En la secuencia del 10 al 15 borra todo menos la linea que contenga el 14
+     
+     
+    zip output.zip optd_aircraft.csv optd_airlines.csv
+    ->Crea un archivo comprimido (output) donde metes los archivos aircraft y airlines 
+   
+   zipinfo output.zip 
+   ->Te muestra informacion sobre el archivo comprimido 
+   
+   gunzip output.zip 
+   ->Descomprime el fichero 
+   
+    bzip2 *.csv
+    (Otra forma de comprimir)
+    con el * comprime todos los archivos de la carpeta donde estemos que tengan .csv (tambien funciona con zip) 
+    
+    
+    ***********************************CREAR SCRIPT**************************
+    touch csv_number_column.sh 
+    
+#!/bin/bash
+DELIMITER=$1
+FILE=$2  
+NUM_OF_COLUMNS=$(head -1 ${FILE} | tr ${DELIMITER} "\n" | wc -l)     paste <(seq 1 ${NUM_OF_COLUMNS}) <(head -1 ${FILE} | tr  "^" "\n")
+
+
+    
+    
+   
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 

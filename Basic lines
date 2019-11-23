@@ -228,6 +228,7 @@ CTRL + U -->corta la linea
 CTRL + Y -->pega la linea 
 CTRL + K -->corta la linea desde la posicion del cursor 
 CTROL + R X -->Busca en tu historial la ultima vez que escribiste X (CTRL+L Busca otra vez en la que lo hayas escrito, penultima)
+CTRL + C -->Detener todos los procesos 
 .................................................................................
 
 seq 10 
@@ -358,19 +359,42 @@ grep -n This Text_example.txt
     
     
     ***********************************CREAR SCRIPT**************************
-    touch csv_number_column.sh 
-    
+    touch csv_number_column.sh
 #!/bin/bash
 DELIMITER=$1
 FILE=$2  
 NUM_OF_COLUMNS=$(head -1 ${FILE} | tr ${DELIMITER} "\n" | wc -l)     paste <(seq 1 ${NUM_OF_COLUMNS}) <(head -1 ${FILE} | tr  "^" "\n")
 
 
+*********************************************************************
+find . -type f -name "*.txt" -exec ls -l {} \; -exec sleep 5 \; &
+->Crear un proceso
+
+CTRL + Z
+->Mandarlo a segundo plano
     
+CTRL + C
+->Parar el proceso 
+
+jobs
+->Muestra los procesos abiertos (devuelve [n] X) 
+kill %n
+->Elimina el proceso (seleccionado por el nº correspondiente al que sale en jobs 
+
+fg
+->Terminal normal
+
+bg
+->Te muestra el background (los procesos que se corren en segundo plano) (No se pueden ejecutar comandos desde aqui, debes ir a fg) 
     
-   
- 
+    **********************************************************************
+ # pip install csvkit
+  csvlook -d "^" optd_aircraft.csv | less -S
+    csvlook -d "^" optd_aircraft.csv | head
+  ->Ver el contenido de un fichero 
   
+   csvstat -d "^" optd_aircraft.csv | less
+   ->Muestra informacion sobre el fichero (numero de NAs, valores repetidos etc.) 
  
  
  
